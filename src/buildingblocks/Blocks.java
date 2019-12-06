@@ -13,6 +13,9 @@ import java.awt.Point;
  */
 public class Blocks extends javax.swing.JFrame {
 
+    Point blockPress = new Point();
+    
+    
     /**
      * Creates new form Blocks
      */
@@ -39,6 +42,14 @@ public class Blocks extends javax.swing.JFrame {
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPanel1MouseReleased(evt);
             }
         });
 
@@ -76,16 +87,22 @@ public class Blocks extends javax.swing.JFrame {
     private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
         Point objectClicked = evt.getLocationOnScreen();
         
-        Point actionPoint = evt.getPoint();
-        
         System.out.println(objectClicked);
-        System.out.println(actionPoint);
+        System.out.println(blockPress);
         System.out.println("----");
         
-        Point newPoint = new Point((int)(objectClicked.getX()+actionPoint.getX()), (int)(objectClicked.getY()+actionPoint.getY()));
+        Point newPoint = new Point((int)(objectClicked.getX()-blockPress.getX()), (int)(objectClicked.getY()-blockPress.getY()));
         
         jPanel1.setLocation(newPoint);
     }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        blockPress = evt.getPoint();
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jPanel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseReleased
+        blockPress = null;
+    }//GEN-LAST:event_jPanel1MouseReleased
 
     /**
      * @param args the command line arguments
