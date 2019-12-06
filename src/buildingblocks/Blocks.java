@@ -33,6 +33,7 @@ public class Blocks extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GUI");
@@ -41,15 +42,15 @@ public class Blocks extends javax.swing.JFrame {
         jPanel1.setToolTipText("Drag Me");
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jPanel1MouseDragged(evt);
+                blockMouseDragged(evt);
             }
         });
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanel1MousePressed(evt);
+                blockMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jPanel1MouseReleased(evt);
+                blockMouseReleased(evt);
             }
         });
 
@@ -64,6 +65,32 @@ public class Blocks extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        jPanel2.setBackground(new java.awt.Color(51, 51, 255));
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                blockMouseDragged(evt);
+            }
+        });
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                blockMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                blockMouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,11 +99,17 @@ public class Blocks extends javax.swing.JFrame {
                 .addGap(318, 318, 318)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(509, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(237, 237, 237))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(147, 147, 147)
+                .addGap(41, 41, 41)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(296, Short.MAX_VALUE))
         );
@@ -84,26 +117,31 @@ public class Blocks extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+    private void blockMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockMouseDragged
+        // Get the "Block" or JPanel clicked
+        javax.swing.JPanel blockClicked = (javax.swing.JPanel) evt.getSource();
+        
+        // Find where it was clicked on screen
         Point objectClicked = evt.getLocationOnScreen();
         
-        System.out.println(objectClicked);
-        System.out.println(blockPress);
-        System.out.println("----");
-        
+        // Use this to keep the mouse where it was when the object was initially clicked
+        // Makes for smooth dragging and a much nicer UI
         Point newPoint = new Point((int)(objectClicked.getX()-blockPress.getX()), (int)(objectClicked.getY()-blockPress.getY()));
         
-        jPanel1.setLocation(newPoint);
-    }//GEN-LAST:event_jPanel1MouseDragged
+        blockClicked.setLocation(newPoint);
+    }//GEN-LAST:event_blockMouseDragged
 
-    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+    private void blockMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockMousePressed
+        // Get the initial point the object was clicked at relative to the objects top left corner
+        // Used for smooth dragging
         blockPress = evt.getPoint();
-    }//GEN-LAST:event_jPanel1MousePressed
+    }//GEN-LAST:event_blockMousePressed
 
-    private void jPanel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseReleased
+    private void blockMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockMouseReleased
+        // Not neccessary, but housekeeping never hurt anyone
         blockPress = null;
-    }//GEN-LAST:event_jPanel1MouseReleased
-
+    }//GEN-LAST:event_blockMouseReleased
+        
     /**
      * @param args the command line arguments
      */
@@ -141,5 +179,6 @@ public class Blocks extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
