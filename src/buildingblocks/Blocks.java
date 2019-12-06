@@ -37,6 +37,7 @@ public class Blocks extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GUI");
+        setName("mainFrame"); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 0, 0));
         jPanel1.setToolTipText("Drag Me");
@@ -96,20 +97,21 @@ public class Blocks extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(318, 318, 318)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(318, 318, 318)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(183, 183, 183)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(509, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(237, 237, 237))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(36, 36, 36)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(11, 11, 11)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(296, Short.MAX_VALUE))
         );
@@ -128,6 +130,17 @@ public class Blocks extends javax.swing.JFrame {
         // Makes for smooth dragging and a much nicer UI
         Point newPoint = new Point((int)(objectClicked.getX()-blockPress.getX()), (int)(objectClicked.getY()-blockPress.getY()));
         
+        // Boundary checking
+        if(newPoint.getX()<=0)
+            newPoint.setLocation(0, newPoint.getY());
+        if(newPoint.getX()>(this.getWidth()-blockClicked.getWidth()))
+            newPoint.setLocation(this.getWidth()-blockClicked.getWidth(), newPoint.getY());
+        if(newPoint.getY()<=0)
+            newPoint.setLocation(newPoint.getX(), 0);
+        if(newPoint.getY()>(this.getHeight()-blockClicked.getHeight()))
+            newPoint.setLocation(newPoint.getX(), this.getHeight()-blockClicked.getHeight());
+        
+        
         blockClicked.setLocation(newPoint);
     }//GEN-LAST:event_blockMouseDragged
 
@@ -138,7 +151,7 @@ public class Blocks extends javax.swing.JFrame {
     }//GEN-LAST:event_blockMousePressed
 
     private void blockMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockMouseReleased
-        // Not neccessary, but housekeeping never hurt anyone
+        // Not neccessary, but a little housekeeping never hurt anyone
         blockPress = null;
     }//GEN-LAST:event_blockMouseReleased
         
