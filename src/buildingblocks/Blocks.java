@@ -55,7 +55,7 @@ public class Blocks extends javax.swing.JFrame {
     
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        makeGenericBlock();
+        makePrintBlock();
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**
@@ -116,8 +116,6 @@ public class Blocks extends javax.swing.JFrame {
     
     /**
      * Creates a generic block with a set color and location
-     * 
-     * TODO: Make different functions that create the different types of blocks
      */
     private void makeGenericBlock() {
         
@@ -139,7 +137,33 @@ public class Blocks extends javax.swing.JFrame {
         });
         getContentPane().add(gen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 100));
         
+        revalidate();
+        repaint();
+    }
+    
+    /**
+     * Creates a print block
+     */
+    private void makePrintBlock() {
+        PrintBlock gen = new PrintBlock();
         
+        gen.setBackground(gen.blockColor);
+        gen.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                blockMouseDragged(evt);
+            }
+        });
+        gen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                blockMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                blockMouseReleased(evt);
+            }
+        });
+        getContentPane().add(gen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, gen.blockWidth, gen.blockHeight));
+        
+        revalidate();
         repaint();
     }
     
