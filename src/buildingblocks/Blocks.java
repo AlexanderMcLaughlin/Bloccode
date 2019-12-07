@@ -38,17 +38,17 @@ public class Blocks extends javax.swing.JFrame {
         setTitle("GUI");
         setMinimumSize(new java.awt.Dimension(800, 700));
         setName("mainFrame"); // NOI18N
-        setSize(new java.awt.Dimension(100, 100));
+        setSize(new java.awt.Dimension(770, 100));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Make New Block");
+        jButton1.setText("Make New Print Block");
         jButton1.setActionCommand("makeBlock");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, 130, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, 150, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
