@@ -21,12 +21,17 @@ public class Block extends javax.swing.JPanel{
     
     Block(String blockType) {
         this.blockType = blockType;
+        
+        this.setSize(100, 100);
+        this.setBackground(new java.awt.Color(255, 0, 0));
     }
     
     Block(String blockType, int blockHeight, int blockWidth) {
         this.blockType = blockType;
         this.blockHeight = blockHeight;
         this.blockWidth = blockWidth;
+        
+        this.setBackground(new java.awt.Color(255, 0, 0));
     }
     
     Block(String blockType, int blockHeight, int blockWidth, java.awt.Color blockColor) {
