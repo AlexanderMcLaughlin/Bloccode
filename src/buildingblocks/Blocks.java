@@ -32,145 +32,56 @@ public class Blocks extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GUI");
+        setMinimumSize(new java.awt.Dimension(800, 700));
         setName("mainFrame"); // NOI18N
+        setSize(new java.awt.Dimension(100, 100));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
-
-        jButton1.setText("Add New Block");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jButton1.setText("Make New Block");
+        jButton1.setActionCommand("makeBlock");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.setBackground(new java.awt.Color(255, 0, 0));
-        jPanel1.setToolTipText("Drag Me");
-        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                blockMouseDragged(evt);
-            }
-        });
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                blockMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                blockMouseReleased(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jPanel2.setBackground(new java.awt.Color(51, 51, 255));
-        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                blockMouseDragged(evt);
-            }
-        });
-        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                blockMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                blockMouseReleased(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(252, 252, 252)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(368, Short.MAX_VALUE))
-        );
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, 130, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        makeGenericBlock();
+    }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO: Need to fix this so that the Block will show up, currently
-        // when the button is clicked it 'makes' a new block but it does not show
-        
-        Block newBlock = new Block("for");
-        
-        this.add(newBlock);
-        newBlock.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void blockMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockMouseReleased
+    /**
+     * Generic function used for reseting the location of the mouse after releasing
+     * a block
+     */
+    private void blockMouseReleased(java.awt.event.MouseEvent evt) {                                    
         // Not neccessary, but a little housekeeping never hurt anyone
         blockPress = null;
-    }//GEN-LAST:event_blockMouseReleased
+    }                                   
 
-    private void blockMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockMousePressed
+    /**
+     * Generic function used for capturing a mouse's location when initially 
+     * clicking a block
+     */
+    private void blockMousePressed(java.awt.event.MouseEvent evt) {                                   
         // Get the initial point the object was clicked at relative to the objects top left corner
         // Used for smooth dragging
         blockPress = evt.getPoint();
-    }//GEN-LAST:event_blockMousePressed
+    }                                  
 
-    private void blockMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockMouseDragged
+    /**
+     * Generic function used for following the mouse movement and relocating
+     * the block selected
+     */
+    private void blockMouseDragged(java.awt.event.MouseEvent evt) {                                   
         // Get the "Block" or JPanel clicked
         javax.swing.JPanel blockClicked = (javax.swing.JPanel) evt.getSource();
 
@@ -179,12 +90,13 @@ public class Blocks extends javax.swing.JFrame {
 
         // Use this to keep the mouse where it was when the object was initially clicked
         // Makes for smooth dragging and a much nicer UI
-        Point newPoint = new Point((int)(objectClicked.getX()-blockPress.getX()), (int)(objectClicked.getY()-blockPress.getY()));
+        Point newPoint = new Point((int)(objectClicked.getX()-blockPress.getX()-15), (int)(objectClicked.getY()-blockPress.getY()-15));
 
         // Predefined values that can be changed depending on where the boundaries
         // should be. The magic number 15 is the error that the mouse allows for
         // an object to go off screen, this simply accounts for the error
-        int rightMostPoint = this.getWidth()-blockClicked.getWidth() - jPanel3.getWidth() -15;
+        //int rightMostPoint = this.getWidth()-blockClicked.getWidth() - jPanel3.getWidth() -15;
+        int rightMostPoint = this.getWidth();
         int leftMostPoint = 0;
         int topMostPoint = 0;
         int bottomMostPoint = this.getHeight()-blockClicked.getHeight();
@@ -200,8 +112,38 @@ public class Blocks extends javax.swing.JFrame {
             newPoint.setLocation(newPoint.getX(), bottomMostPoint);
 
         blockClicked.setLocation(newPoint);
-    }//GEN-LAST:event_blockMouseDragged
+    }
+    
+    /**
+     * Creates a generic block with a set color and location
+     * 
+     * TODO: Make different functions that create the different types of blocks
+     */
+    private void makeGenericBlock() {
         
+        Block gen = new Block("generic");
+        
+        gen.setBackground(new java.awt.Color(255, 255, 0));
+        gen.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                blockMouseDragged(evt);
+            }
+        });
+        gen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                blockMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                blockMouseReleased(evt);
+            }
+        });
+        getContentPane().add(gen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 100));
+        
+        
+        repaint();
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -239,8 +181,5 @@ public class Blocks extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
