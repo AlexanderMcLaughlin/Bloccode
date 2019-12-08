@@ -1,20 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * The main GUI for the IDE
  */
 package buildingblocks;
 
 import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
- *
  * @author Alexander
  */
 public class Blocks extends javax.swing.JFrame {
 
     Point blockPress = new Point();
-    
     
     /**
      * Creates new form Blocks
@@ -32,31 +31,40 @@ public class Blocks extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        mainPanel = new javax.swing.JPanel();
+        printButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GUI");
-        setMinimumSize(new java.awt.Dimension(800, 700));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1300, 650));
+        setMinimumSize(new java.awt.Dimension(1300, 650));
         setName("mainFrame"); // NOI18N
-        setSize(new java.awt.Dimension(770, 100));
+        setPreferredSize(new java.awt.Dimension(1300, 650));
+        setResizable(false);
+        setSize(new java.awt.Dimension(1300, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Make New Print Block");
-        jButton1.setActionCommand("makeBlock");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 570));
+
+        printButton.setText("Make New Print Block");
+        printButton.setActionCommand("makeBlock");
+        printButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                printButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, 150, -1));
+        getContentPane().add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 20, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void printButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printButtonMouseClicked
         // TODO add your handling code here:
         makePrintBlock();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_printButtonMouseClicked
 
     /**
      * Generic function used for reseting the location of the mouse after releasing
@@ -90,13 +98,13 @@ public class Blocks extends javax.swing.JFrame {
 
         // Use this to keep the mouse where it was when the object was initially clicked
         // Makes for smooth dragging and a much nicer UI
-        Point newPoint = new Point((int)(objectClicked.getX()-blockPress.getX()-15), (int)(objectClicked.getY()-blockPress.getY()-15));
+        Point newPoint = new Point((int)(objectClicked.getX()-blockPress.getX()), (int)(objectClicked.getY()-blockPress.getY()));
 
         // Predefined values that can be changed depending on where the boundaries
         // should be. The magic number 15 is the error that the mouse allows for
         // an object to go off screen, this simply accounts for the error
         //int rightMostPoint = this.getWidth()-blockClicked.getWidth() - jPanel3.getWidth() -15;
-        int rightMostPoint = this.getWidth();
+        int rightMostPoint = this.getWidth()-blockClicked.getWidth();
         int leftMostPoint = 0;
         int topMostPoint = 0;
         int bottomMostPoint = this.getHeight()-blockClicked.getHeight();
@@ -135,7 +143,7 @@ public class Blocks extends javax.swing.JFrame {
                 blockMouseReleased(evt);
             }
         });
-        getContentPane().add(gen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 100));
+        mainPanel.add(gen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 100));
         
         revalidate();
         repaint();
@@ -161,12 +169,11 @@ public class Blocks extends javax.swing.JFrame {
                 blockMouseReleased(evt);
             }
         });
-        getContentPane().add(gen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, gen.blockWidth, gen.blockHeight));
+        mainPanel.add(gen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, gen.blockWidth, gen.blockHeight));
         
         revalidate();
         repaint();
     }
-    
     
     /**
      * @param args the command line arguments
@@ -194,7 +201,9 @@ public class Blocks extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Blocks.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+       
 
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -204,6 +213,7 @@ public class Blocks extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private static javax.swing.JPanel mainPanel;
+    private javax.swing.JButton printButton;
     // End of variables declaration//GEN-END:variables
 }
