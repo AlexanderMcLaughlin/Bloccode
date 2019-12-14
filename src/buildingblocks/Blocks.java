@@ -31,8 +31,9 @@ public class Blocks extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainPanel = new javax.swing.JPanel();
         printButton = new javax.swing.JButton();
+        mainScrollPane = new javax.swing.JScrollPane();
+        mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GUI");
@@ -45,10 +46,6 @@ public class Blocks extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1300, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
-        mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 570));
-
         printButton.setText("Make New Print Block");
         printButton.setActionCommand("makeBlock");
         printButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -57,6 +54,16 @@ public class Blocks extends javax.swing.JFrame {
             }
         });
         getContentPane().add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 20, -1, -1));
+
+        mainScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        mainScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        mainScrollPane.setHorizontalScrollBar(null);
+
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        mainScrollPane.setViewportView(mainPanel);
+
+        getContentPane().add(mainScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1090, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -103,26 +110,8 @@ public class Blocks extends javax.swing.JFrame {
         
         // Use this to keep the mouse where it was when the object was initially clicked
         // Makes for smooth dragging and a much nicer UI
-        Point newPoint = new Point((int)(objectClicked.getX()-blockPress.getX()), (int)(objectClicked.getY()-blockPress.getY()));
-
-        // Predefined values that can be changed depending on where the boundaries
-        // should be. The magic number 15 is the error that the mouse allows for
-        // an object to go off screen, this simply accounts for the error
-        //int rightMostPoint = this.getWidth()-blockClicked.getWidth() - jPanel3.getWidth() -15;
-        int rightMostPoint = this.getWidth()-blockClicked.getWidth();
-        int leftMostPoint = 0;
-        int topMostPoint = 0;
-        int bottomMostPoint = this.getHeight()-blockClicked.getHeight();
-
-        // Boundary checking
-        if(newPoint.getX()<=leftMostPoint)
-            newPoint.setLocation(leftMostPoint, newPoint.getY());
-        if(newPoint.getX()>rightMostPoint)
-            newPoint.setLocation(rightMostPoint, newPoint.getY());
-        if(newPoint.getY()<=topMostPoint)
-            newPoint.setLocation(newPoint.getX(), topMostPoint);
-        if(newPoint.getY()>bottomMostPoint)
-            newPoint.setLocation(newPoint.getX(), bottomMostPoint);
+        Point newPoint = new Point((int)(objectClicked.getX()-blockPress.getX()), 
+                                   (int)(objectClicked.getY()-blockPress.getY()));
 
         blockClicked.setLocation(newPoint);
     }
@@ -219,6 +208,7 @@ public class Blocks extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JPanel mainPanel;
+    private javax.swing.JScrollPane mainScrollPane;
     private javax.swing.JButton printButton;
     // End of variables declaration//GEN-END:variables
 }
