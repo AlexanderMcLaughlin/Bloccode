@@ -93,9 +93,14 @@ public class Blocks extends javax.swing.JFrame {
         // Get the "Block" or JPanel clicked
         javax.swing.JPanel blockClicked = (javax.swing.JPanel) evt.getSource();
 
-        // Find where it was clicked on screen
-        Point objectClicked = evt.getLocationOnScreen();
-
+        // Find where the object was clicked on screen relative to the mainPanel
+        Point objectClicked = mainPanel.getMousePosition(true);
+        
+        // Necessary to prevent null reference exception when mouse goes off screen
+        // will simply handle the mouse exiting the JPanel by not moving the block
+        if(objectClicked == null)
+            return;
+        
         // Use this to keep the mouse where it was when the object was initially clicked
         // Makes for smooth dragging and a much nicer UI
         Point newPoint = new Point((int)(objectClicked.getX()-blockPress.getX()), (int)(objectClicked.getY()-blockPress.getY()));
