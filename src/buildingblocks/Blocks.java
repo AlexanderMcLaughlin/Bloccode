@@ -34,6 +34,7 @@ public class Blocks extends javax.swing.JFrame {
         printButton = new javax.swing.JButton();
         mainScrollPane = new javax.swing.JScrollPane();
         mainPanel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GUI");
@@ -48,22 +49,42 @@ public class Blocks extends javax.swing.JFrame {
 
         printButton.setText("Make New Print Block");
         printButton.setActionCommand("makeBlock");
+        printButton.setMaximumSize(new java.awt.Dimension(100, 23));
+        printButton.setMinimumSize(new java.awt.Dimension(100, 23));
+        printButton.setPreferredSize(new java.awt.Dimension(100, 23));
         printButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 printButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 20, -1, -1));
+        getContentPane().add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 70, 150, -1));
 
         mainScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         mainScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         mainScrollPane.setHorizontalScrollBar(null);
+        mainScrollPane.setMaximumSize(new java.awt.Dimension(1100, 600));
+        mainScrollPane.setMinimumSize(new java.awt.Dimension(1100, 600));
+        mainScrollPane.setPreferredSize(new java.awt.Dimension(1100, 600));
 
         mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        mainPanel.setMaximumSize(new java.awt.Dimension(1100, 20000000));
+        mainPanel.setMinimumSize(new java.awt.Dimension(1100, 600));
+        mainPanel.setPreferredSize(new java.awt.Dimension(1100, 500));
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         mainScrollPane.setViewportView(mainPanel);
 
-        getContentPane().add(mainScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1090, 540));
+        getContentPane().add(mainScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1110, 530));
+
+        jButton1.setLabel("Add New Line");
+        jButton1.setMaximumSize(new java.awt.Dimension(100, 23));
+        jButton1.setMinimumSize(new java.awt.Dimension(100, 23));
+        jButton1.setPreferredSize(new java.awt.Dimension(100, 23));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                increasePanelSize(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 20, 150, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -72,6 +93,14 @@ public class Blocks extends javax.swing.JFrame {
         // TODO add your handling code here:
         makePrintBlock();
     }//GEN-LAST:event_printButtonMouseClicked
+
+    private void increasePanelSize(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increasePanelSize
+        mainPanel.setPreferredSize(new java.awt.Dimension(1200, mainPanel.getHeight()+100));
+        
+        
+        revalidate();
+        repaint();
+    }//GEN-LAST:event_increasePanelSize
 
     /**
      * Generic function used for reseting the location of the mouse after releasing
@@ -207,6 +236,7 @@ public class Blocks extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private static javax.swing.JPanel mainPanel;
     private javax.swing.JScrollPane mainScrollPane;
     private javax.swing.JButton printButton;
