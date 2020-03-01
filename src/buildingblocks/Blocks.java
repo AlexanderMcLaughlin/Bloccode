@@ -3,6 +3,7 @@
  */
 package buildingblocks;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +17,7 @@ public class Blocks extends javax.swing.JFrame {
     static Point blockPress = new Point();
     static HashMap<JPanel, Point> globalLocations =  new HashMap<>();
     
-    static JPanel lastBlockClicked = null;
+    static Block lastBlockClicked = null;
     
     /**
      * Creates new form Blocks
@@ -91,7 +92,17 @@ public class Blocks extends javax.swing.JFrame {
     }//GEN-LAST:event_printButtonMouseClicked
 
     private void mainPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainPanelMouseClicked
+        // If there was a selected block before, clicking on the screen will deselect it
+        if(lastBlockClicked != null) {
+            lastBlockClicked.setBackground(lastBlockClicked.blockColor);
+        }
+        
+        // Used to indicate no blocks selected
         lastBlockClicked = null;
+        
+        
+        
+        refresh();
     }//GEN-LAST:event_mainPanelMouseClicked
 
     /**
@@ -101,6 +112,8 @@ public class Blocks extends javax.swing.JFrame {
     private void blockMouseReleased(java.awt.event.MouseEvent evt) {                                    
         // Not neccessary, but a little housekeeping never hurt anyone
         blockPress = null;
+        
+        refresh();
     }                                   
 
     /**
@@ -113,8 +126,17 @@ public class Blocks extends javax.swing.JFrame {
         blockPress = evt.getPoint();
         
         // Used for handling the menu for block customization
-        JPanel jp = (JPanel)evt.getSource();
+        Block jp = (Block)evt.getSource();
+        
+        if(lastBlockClicked != null) {
+            lastBlockClicked.setBackground(lastBlockClicked.blockColor);
+        }
+        
+        // Will highlight the most recently selected block in red
         lastBlockClicked = jp;
+        jp.setBackground(Color.red);
+        
+        refresh();
     }                                  
 
     /**
@@ -141,6 +163,8 @@ public class Blocks extends javax.swing.JFrame {
         blockClicked.setLocation(newPoint);
         
         addBlockLocation(blockClicked, newPoint);
+        
+        refresh();
     }
     
     /**
@@ -166,9 +190,7 @@ public class Blocks extends javax.swing.JFrame {
         });
         mainPanel.add(gen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 100));
         
-        revalidate();
-        repaint();
-        refreshBlocks();
+        refresh();
     }
     
     /**
@@ -193,9 +215,7 @@ public class Blocks extends javax.swing.JFrame {
         });
         mainPanel.add(gen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, gen.blockWidth, gen.blockHeight));
         
-        revalidate();
-        repaint();
-        refreshBlocks();
+        refresh();
     }
     
     /*
@@ -215,6 +235,15 @@ public class Blocks extends javax.swing.JFrame {
      */
     public static void updateBlockLocation(JPanel jp, Point po) {
         globalLocations.replace(jp, po);
+    }
+    
+    /*
+     * This function should be executed after every action listener
+     */
+    public void refresh() {
+        revalidate();
+        repaint();
+        refreshBlocks();
     }
     
     /*
