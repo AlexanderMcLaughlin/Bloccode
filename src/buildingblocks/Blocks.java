@@ -38,6 +38,23 @@ public class Blocks extends javax.swing.JFrame {
         printButton = new javax.swing.JButton();
         mainScrollPane = new javax.swing.JScrollPane();
         mainPanel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        optionPanel = new javax.swing.JPanel();
+        printPanel = new javax.swing.JPanel();
+        printOptionLabel = new javax.swing.JLabel();
+        printOptionLabel1 = new javax.swing.JLabel();
+        printOptionInput = new javax.swing.JTextField();
+        printOptionUpdate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GUI");
@@ -50,7 +67,7 @@ public class Blocks extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1300, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        printButton.setText("Make New Print Block");
+        printButton.setText("Print");
         printButton.setActionCommand("makeBlock");
         printButton.setMaximumSize(new java.awt.Dimension(100, 23));
         printButton.setMinimumSize(new java.awt.Dimension(100, 23));
@@ -60,7 +77,7 @@ public class Blocks extends javax.swing.JFrame {
                 printButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 20, 150, -1));
+        getContentPane().add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 30, 200, -1));
 
         mainScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         mainScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -81,7 +98,56 @@ public class Blocks extends javax.swing.JFrame {
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         mainScrollPane.setViewportView(mainPanel);
 
-        getContentPane().add(mainScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1110, 530));
+        getContentPane().add(mainScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 530));
+
+        jButton1.setText("For");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 60, 100, -1));
+
+        jButton2.setText("While");
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 90, 100, -1));
+
+        jButton3.setText("If");
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 120, 60, -1));
+
+        jButton4.setText("Variable");
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 150, 200, -1));
+
+        jButton5.setText("End For");
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 60, 100, -1));
+
+        jButton6.setText("End While");
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 90, 100, -1));
+
+        jButton7.setText("Else If");
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 120, 80, -1));
+
+        jButton8.setText("Else");
+        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 120, 60, -1));
+
+        jButton9.setText("Expression");
+        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 180, 200, -1));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 230, -1, -1));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 220, 220, 10));
+
+        optionPanel.setBackground(new java.awt.Color(204, 204, 204));
+        optionPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        printPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        printOptionLabel.setText("Print Options");
+        printPanel.add(printOptionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, -1));
+
+        printOptionLabel1.setText("Text to Output");
+        printPanel.add(printOptionLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        printPanel.add(printOptionInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 180, -1));
+
+        printOptionUpdate.setText("Save Updates");
+        printPanel.add(printOptionUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 200, -1));
+
+        optionPanel.add(printPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 300));
+        printPanel.setVisible(false);
+
+        getContentPane().add(optionPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 230, 220, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -95,12 +161,13 @@ public class Blocks extends javax.swing.JFrame {
         // If there was a selected block before, clicking on the screen will deselect it
         if(lastBlockClicked != null) {
             lastBlockClicked.setBackground(lastBlockClicked.blockColor);
+            
+            //printPanel.setVisible(false);
+            
         }
         
         // Used to indicate no blocks selected
         lastBlockClicked = null;
-        
-        
         
         refresh();
     }//GEN-LAST:event_mainPanelMouseClicked
@@ -135,6 +202,9 @@ public class Blocks extends javax.swing.JFrame {
         // Will highlight the most recently selected block in red
         lastBlockClicked = jp;
         jp.setBackground(Color.red);
+        
+        //hideAllOptionPanels();
+        showOptionPanel();
         
         refresh();
     }                                  
@@ -247,6 +317,25 @@ public class Blocks extends javax.swing.JFrame {
     }
     
     /*
+     * This function will hide all the panels
+     */
+    public void hideAllOptionPanels() {
+        printPanel.setVisible(false);
+        //refresh();
+    }
+    
+    /*
+     * This function will show the correct option panel for the last block clicked
+     */
+    public void showOptionPanel() {
+        if(lastBlockClicked instanceof PrintBlock) {
+            printPanel.setVisible(true);
+        }
+        
+        refresh();
+    }
+    
+    /*
      * After repainting and revalidating the block locations are reset, this will undo that reset
      */
     public static void refreshBlocks() {
@@ -298,8 +387,25 @@ public class Blocks extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private static javax.swing.JPanel mainPanel;
     private javax.swing.JScrollPane mainScrollPane;
+    private static javax.swing.JPanel optionPanel;
     private javax.swing.JButton printButton;
+    private static javax.swing.JTextField printOptionInput;
+    private static javax.swing.JLabel printOptionLabel;
+    private static javax.swing.JLabel printOptionLabel1;
+    private static javax.swing.JButton printOptionUpdate;
+    private static javax.swing.JPanel printPanel;
     // End of variables declaration//GEN-END:variables
 }
