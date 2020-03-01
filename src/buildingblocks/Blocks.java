@@ -4,16 +4,17 @@
 package buildingblocks;
 
 import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JPanel;
 
 /**
  * @author Alexander
  */
 public class Blocks extends javax.swing.JFrame {
 
-    Point blockPress = new Point();
+    static Point blockPress = new Point();
+    static HashMap<JPanel, Point> globalLocations =  new HashMap<>();
     
     /**
      * Creates new form Blocks
@@ -34,7 +35,6 @@ public class Blocks extends javax.swing.JFrame {
         printButton = new javax.swing.JButton();
         mainScrollPane = new javax.swing.JScrollPane();
         mainPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GUI");
@@ -57,7 +57,7 @@ public class Blocks extends javax.swing.JFrame {
                 printButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 70, 150, -1));
+        getContentPane().add(printButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 20, 150, -1));
 
         mainScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         mainScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -75,17 +75,6 @@ public class Blocks extends javax.swing.JFrame {
 
         getContentPane().add(mainScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1110, 530));
 
-        jButton1.setLabel("Add New Line");
-        jButton1.setMaximumSize(new java.awt.Dimension(100, 23));
-        jButton1.setMinimumSize(new java.awt.Dimension(100, 23));
-        jButton1.setPreferredSize(new java.awt.Dimension(100, 23));
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                increasePanelSize(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 20, 150, -1));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
@@ -93,14 +82,6 @@ public class Blocks extends javax.swing.JFrame {
         // TODO add your handling code here:
         makePrintBlock();
     }//GEN-LAST:event_printButtonMouseClicked
-
-    private void increasePanelSize(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_increasePanelSize
-        mainPanel.setPreferredSize(new java.awt.Dimension(1200, mainPanel.getHeight()+100));
-        
-        
-        revalidate();
-        repaint();
-    }//GEN-LAST:event_increasePanelSize
 
     /**
      * Generic function used for reseting the location of the mouse after releasing
@@ -143,6 +124,8 @@ public class Blocks extends javax.swing.JFrame {
                                    (int)(objectClicked.getY()-blockPress.getY()));
 
         blockClicked.setLocation(newPoint);
+        
+        addBlockLocation(blockClicked, newPoint);
     }
     
     /**
@@ -170,6 +153,7 @@ public class Blocks extends javax.swing.JFrame {
         
         revalidate();
         repaint();
+        refreshBlocks();
     }
     
     /**
@@ -196,6 +180,40 @@ public class Blocks extends javax.swing.JFrame {
         
         revalidate();
         repaint();
+        refreshBlocks();
+    }
+    
+    /*
+     * Will add the block specified to the global hashmap
+     */
+    public static void addBlockLocation(JPanel jp, Point po) {
+        if(globalLocations.containsKey(jp)) {
+            updateBlockLocation(jp, po);
+            return;
+        }
+        
+        globalLocations.put(jp, po);
+    }
+    
+    /*
+     * Will update the block specified to the global hashmap
+     */
+    public static void updateBlockLocation(JPanel jp, Point po) {
+        globalLocations.replace(jp, po);
+    }
+    
+    /*
+     * After repainting and revalidating the block locations are reset, this will undo that reset
+     */
+    public static void refreshBlocks() {
+        
+        for(Map.Entry e : globalLocations.entrySet()) {
+            
+            JPanel jp = (JPanel)e.getKey();
+            Point po = (Point)e.getValue();
+            
+            jp.setLocation(po);
+        }
     }
     
     /**
@@ -236,7 +254,6 @@ public class Blocks extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private static javax.swing.JPanel mainPanel;
     private javax.swing.JScrollPane mainScrollPane;
     private javax.swing.JButton printButton;
