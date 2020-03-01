@@ -16,6 +16,8 @@ public class Blocks extends javax.swing.JFrame {
     static Point blockPress = new Point();
     static HashMap<JPanel, Point> globalLocations =  new HashMap<>();
     
+    static JPanel lastBlockClicked = null;
+    
     /**
      * Creates new form Blocks
      */
@@ -70,6 +72,11 @@ public class Blocks extends javax.swing.JFrame {
         mainPanel.setMaximumSize(new java.awt.Dimension(1100, 20000000));
         mainPanel.setMinimumSize(new java.awt.Dimension(1100, 600));
         mainPanel.setPreferredSize(new java.awt.Dimension(1100, 500));
+        mainPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mainPanelMouseClicked(evt);
+            }
+        });
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         mainScrollPane.setViewportView(mainPanel);
 
@@ -82,6 +89,10 @@ public class Blocks extends javax.swing.JFrame {
         // TODO add your handling code here:
         makePrintBlock();
     }//GEN-LAST:event_printButtonMouseClicked
+
+    private void mainPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainPanelMouseClicked
+        lastBlockClicked = null;
+    }//GEN-LAST:event_mainPanelMouseClicked
 
     /**
      * Generic function used for reseting the location of the mouse after releasing
@@ -100,6 +111,10 @@ public class Blocks extends javax.swing.JFrame {
         // Get the initial point the object was clicked at relative to the objects top left corner
         // Used for smooth dragging
         blockPress = evt.getPoint();
+        
+        // Used for handling the menu for block customization
+        JPanel jp = (JPanel)evt.getSource();
+        lastBlockClicked = jp;
     }                                  
 
     /**
